@@ -1,0 +1,66 @@
+<section id="pricing" class="pricing">
+  <div class="container">
+    <div class="section-title">
+      <h2 style="color: rgb(87, 56, 143);text-shadow: 6px 4px 2px #9797b4;">Add Water Resource</h2>
+      <p style="color: rgb(87, 56, 143);text-shadow: 2px 2px 2px #9797b4;">Water Saviours</p>
+    </div>
+    <div align="center">
+      <div style="width:400px;">
+        <div class="box" style="background-color: rgb(213, 213, 241);">
+
+          <form #WRForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="center-block">Longitude:
+                <input #lon="ngModel" pattern="^[0-9]+(.[0-9]{0,9})?$" [class.is-invalid]="lon.invalid && lon.touched"
+                  required class="form-control" [(ngModel)]="WaterResource.Longitude" name="Longitude">
+                <small class="text-danger" [class.d-none]="lon.valid || lon.untouched"> Longitude is required </small>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="center-block">Latitude:
+                <input #lat="ngModel" pattern="^[0-9]+(.[0-9]{0,9})?$" [class.is-invalid]="lat.invalid && lat.touched"
+                  required class="form-control" [(ngModel)]="WaterResource.Latitude" name="Latitude">
+                <small class="text-danger" [class.d-none]="lat.valid || lat.untouched"> Latitude is required </small>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="center-block">Availability:
+                <input #ava="ngModel" [class.is-invalid]="ava.invalid && ava.touched" required class="form-control"
+                  [(ngModel)]="WaterResource.Availability" name="Availability">
+                <small class="text-danger" [class.d-none]="ava.valid || ava.untouched"> Availability is required
+                </small>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="center-block">Quality:
+                <input #qu="ngModel" [class.is-invalid]="qu.invalid && qu.touched" required class="form-control"
+                  [(ngModel)]="WaterResource.Quality" name="Quality">
+                <small class="text-danger" [class.d-none]="qu.valid || qu.untouched"> Quality is required </small>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="center-block">Type:
+                <input #ty="ngModel" [class.is-invalid]="ty.invalid && ty.touched" required class="form-control"
+                  [(ngModel)]="WaterResource.Type" name="Type">
+                <small class="text-danger" [class.d-none]="ty.valid || ty.untouched"> Type is required </small>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="center-block">Description:
+                <input #des="ngModel" [class.is-invalid]="des.invalid && des.touched" required class="form-control"
+                  [(ngModel)]="WaterResource.Description" name="Description">
+                <small class="text-danger" [class.d-none]="des.valid || des.untouched"> Description is required </small>
+              </label>
+            </div>
+            <br>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success" [disabled]="WRForm.form.invalid">Submit</button>
+            </div>
+            <br>
+            {{result}}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

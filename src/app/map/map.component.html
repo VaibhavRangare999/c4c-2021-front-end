@@ -1,0 +1,74 @@
+<section id="pricing" class="pricing">
+  <div class="container">
+    <div align="center">
+      <div>
+        <div class="box">
+
+          <!-- Load Map-->
+          <div id="loading" style="display:block;height:350px;">
+            <img src="../../assets/img/gal-pinner.gif" alt="" class="img-fluid">
+            <br>
+            Loading map...
+          </div>
+
+          <div id="loading1" style="position:absolute;;display:none;width:100%;height:550px;top:20px;z-index: 100;opacity: 0.5;">
+            <img src="../../assets/img/gal-pinner.gif" alt="" class="img-fluid">
+            <br>
+            Loading map...
+          </div>
+          <!-- Load Map-->
+
+          <!-- Angular Map -->
+          <div id="angularmap" style="display:none;">
+            <agm-map [zoom]="15" [latitude]="lat" [longitude]="lng" (mapClick)="displayDataOnClick($event)">
+              <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude"
+                aria-details="detail" [iconUrl]="marker.icon" (mouseOver)="onMouseOver(infoWindow, $event)"
+                dorebuildall="true" (mouseOut)="onMouseOut(infoWindow, $event)" [label]="marker.label" [color]="'red'">
+                <agm-info-window #infoWindow>
+                  <div>
+                    {{marker.description}}
+                    <br>
+                    Latitude: {{marker.latitude}}
+                    <br>
+                    Longitude: {{marker.longitude}}
+                    <br>
+                    Address: {{marker.location}}
+                    <br>
+                    Water Availability: {{marker.availability}}
+                    <br>
+                    Water Quality: {{marker.quality}}
+                  </div>
+
+                  <div align="center">
+                    <img src='{{marker.icon.url}}' style="height:50px;width:50px;" />
+                  </div>
+                </agm-info-window>
+              </agm-marker>
+            </agm-map>
+          </div>
+          <!-- Angular Map -->
+
+          <!-- Send Message Section -->
+          <form #MSGForm="ngForm" (ngSubmit)="angSendMessage()">
+          <div id="sendmsg" class="form-group" style="display: none;">
+            <h3 style="color: rgb(0, 0, 0);text-shadow: 6px 6px 8px #000000;">{{address}}</h3>
+            <!--<input type="text" value="" placeholder="+91">
+            <br><br>
+            -->
+
+            <input #ph="ngModel" pattern="^((\\+91-?)|0)?[0-9]{12}$" [class.is-invalid]="ph.invalid && ph.touched" required class="form-control"
+                  [(ngModel)]="phone" name="ph" style="position:relative;width:40%;left:30%;" placeholder="910123456789">
+                 
+            <small class="text-danger" [class.d-none]="ph.valid || ph.untouched">Phone is required with country code </small>
+            <br>
+
+            <button type="submit" class="btn btn-success" [disabled]="MSGForm.form.invalid">Send Information to mobile Number</button>
+            <br>
+            {{msgResult}}
+          </div>
+          </form>
+        </div> <!-- End Box Div -->
+      </div>
+    </div> <!-- End Div Center -->
+  </div> <!-- End Div Container -->
+</section><!-- End Pricing Section -->
